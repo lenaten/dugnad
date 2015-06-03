@@ -27,7 +27,9 @@ Tests are written using mocha
 See [documentation](http://mochajs.org/) for more info.
 
 ## Install mocha
-    npm install -g mocha // (might require sudo)
+    npm install -g mocha
+
+This step might require sudo
 
 ## Run client tests:
     cd client/
