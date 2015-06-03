@@ -18,13 +18,9 @@ The different parts can be accessed through the following URLs:
 
 Configuration can be done through the following files
 
-General parameter defaults:
-    client/js/Parameters.js     
-    
-Broadcaster overwrites: change stream type (dummy, whammy encoded), fanout, etc.
-    client/broadcaster.html 
-Viewer overwrites: overwrite ideal peer count, set dummy delay on connections, etc.
-    client/index.html       
+- `client/js/Parameters.js` - General parameter defaults
+- `client/broadcaster.html` - Broadcaster overwrites; change stream type (dummy, whammy encoded), fanout, etc.  
+- `client/index.html` - Viewer overwrites; overwrite ideal peer count, set dummy delay on connections, etc.  
 
 # Tests
 Tests are written using mocha
