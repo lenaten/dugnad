@@ -1,6 +1,9 @@
 # About
 Code related to my msc thesis.
 
+# Measurements
+The measurements are found in the `reporting/` directory and they have been processed using the `plots.py` script.
+
 # Setting up and running the server
     cd server/
     npm install
