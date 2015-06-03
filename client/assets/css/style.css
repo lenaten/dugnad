@@ -1,0 +1,16 @@
+body {
+    background: #f9f9f9;
+}
+
+.video-container > video {
+    width: 100% !important;
+    height: auto !important;
+}
+
+#videoMonitor {
+    /*-moz-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    -ms-transform: scale(-1, 1);
+    transform: scale(-1, 1);*/
+}

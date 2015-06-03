@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<!--
+This software uses the jStat library for well-tested functions for statistical
+methods and distributions.
+
+
+Other nodes:
+
+Slides on HTTP video streaming @ http://www.slideshare.net/jefftapper/streaming-video-to-html
+
+Look into Dash.js @ http://dashif.org/reference/players/javascript/1.0.0/
+ - https://github.com/Dash-Industry-Forum/dash.js
+
+Matroska stream: http://www.matroska.org/technical/streaming/index.html
+ - suggests approach with concatinating videos is ok
+
+Live streams consist of fragments (self-contained units of frames)
+ - https://github.com/vbence/stream-m
+The ideal fragment size is ~200kBytes (1600 kbits), so put a keyframe
+with the following spacing
+ - 1600k / <bitrate> * <framerate>
+
+Example player using sourceBuffers
+ - https://github.com/vbence/stream-m/blob/master/player-demo/player.js
+-->
+
+
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>DUGNAD Dashboard</title>
+</head>
+<body>
+
+<div id="iframes"></div>
+<script type="text/javascript">
+var container = document.getElementById("iframes");
+var client_url = "/";
+
+var lambda = 1.12 * (1/60)    // arrivals per minute
+var mu = 1/4 * (1/60)         // lifetime
+
+//lambda *= 60
+//mu *= 60
+
+var EX_A = "A"
+var EX_B = "B"
+var EXPERIMENT = EX_A
+
+function exponentialDistributionSample(rate) {
+    return -1 / rate * Math.log(Math.random());
+}
+
+function addDummy() {
+    var div = document.createElement("div");
+    div.style.width = "100px";
+    div.style.height = "100px";
+    div.style.marginRight = "10px"
+    div.style.float = "left"
+    div.style.background = "#000";
+    container.appendChild(div)
+
+    if (EXPERIMENT === EX_A) {
+        setTimeout(function () {
+            container.removeChild(div);
+        }, exponentialDistributionSample(mu) * 1000);
+    }
+}
+
+function addUser() {
+    var iframe = document.createElement("iframe");
+    iframe.src = client_url;
+    //iframe.width = 300;
+    //iframe.height = 600;
+    container.appendChild(iframe);
+
+    // queue user removal
+    if (EXPERIMENT === EX_A) {
+        setTimeout(function () {
+            container.removeChild(iframe);
+        }, exponentialDistributionSample(mu) * 1000);
+    }
+}
+
+function queueNextUserArrival() {
+    setTimeout(function () {
+        if (EXPERIMENT === EX_A ||
+           (EXPERIMENT === EX_B && container.childNodes.length < 6)) {
+            addUser();
+            //addDummy()
+        }
+        queueNextUserArrival();
+    }, exponentialDistributionSample(lambda) * 1000);
+}
+queueNextUserArrival();
+</script>
+
+</body>
+</html>

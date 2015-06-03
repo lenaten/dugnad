@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Viewer</title>
+<meta charset="utf8">
+<link type="text/css" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div class="container">
+    <div class="col-xs-12">
+        <h1>
+            Chunky video streaming
+        </h1>
+        <a href="broadcaster.html">go to broadcaster</a>
+        <hr>
+    </div>
+
+    <div class="col-xs-5">
+        <h2>Statistics</h2>
+        <table class="table table-responsive">
+            <tr>
+                <td>estimated upload:</td><td class="text-right"><span id="statistics-upload">0</span> kbps</td>
+            </tr>
+            <tr>
+                <td>estimated download:</td><td class="text-right"><span id="statistics-download">0</span> kbps</td>
+            </tr>
+            <tr>
+                <td>parents:</td><td class="text-right"><span id="statistics-parents">0</span></td>
+            </tr>
+            <tr>
+                <td>children:</td><td class="text-right"><span id="statistics-children">0</span></td>
+            </tr>
+            <tr>
+                <td>distance:</td><td class="text-right"><span id="statistics-distance">0</span></td>
+            </tr>
+            <tr>
+                <td>coordinate:</td><td class="text-right"><span id="statistics-coordinate">(x, y)</span></td>
+            </tr>
+        </table>
+
+        <div id="connection-statistics"></div>
+    </div>
+    <div class="col-xs-7">
+        <h2>Stream</h2>
+        <div id="player_container"></div>
+    </div>
+</div>
+
+<!--<script src="https://cdn.socket.io/socket.io-1.2.1.js"></script>-->
+<script type="text/javascript" src="socket.js"></script>
+<script type="text/javascript" src="vendor/adapter.js"></script>
+
+<script type="text/javascript" src="js/ConnectionFactory.js"></script>
+<script type="text/javascript" src="js/ConnectionManager.js"></script>
+<script type="text/javascript" src="js/Connection.js"></script>
+<script type="text/javascript" src="js/SignalDispatcher.js"></script>
+<script type="text/javascript" src="js/Client.js"></script>
+<script type="text/javascript" src="js/Parameters.js"></script>
+
+<script type="text/javascript" src="js/Probe.js"></script>
+<script type="text/javascript" src="js/ConnectionStatistics.js"></script>
+
+
+<script type="text/javascript" src="js/Chunk.js"></script>
+<script type="text/javascript" src="js/Assembler.js"></script>
+<script type="text/javascript" src="js/ChunkBuffer.js"></script>
+<script type="text/javascript" src="js/BufferMap.js"></script>
+<script type="text/javascript" src="js/Player.js"></script>
+
+<script type="text/javascript">
+var params = new Parameters({
+    upload_delay: 0,
+    ideal_peer_count: 14,
+});
+var client = new Client(params);
+</script>
+</body>
+</html>
